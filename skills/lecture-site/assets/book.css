@@ -1,0 +1,99 @@
+/* 책으로 보기(권 첫머리 .p-book, 장 쪽 .p-book.p-view). 쪽은 A5(148×210mm) 종이. book.js 가 원고를 쪽으로 나눔 */
+.p-book main{padding-bottom:var(--gap-section)}
+.bk-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(48px,7vw,128px);align-items:center;padding-top:clamp(56px,7vw,104px)}
+.bk-cover-img{justify-self:center;width:min(100%,340px);border-radius:4px;box-shadow:0 0 0 1px rgb(255 255 255 / .05),0 60px 120px -60px rgb(var(--light) / .5)}
+.bk-head .vol-no{font-size:var(--ui-size);font-weight:500;color:var(--ink-muted)}
+.bk-head h1{margin-top:14px;max-width:13em}
+.bk-head .chs{margin-top:clamp(36px,4vw,56px);display:grid;gap:clamp(20px,2.4vw,32px)}
+.bk-head .chs li{display:grid;grid-template-columns:3.4em minmax(0,1fr);column-gap:8px;align-items:baseline}
+.bk-head .chname{grid-column:2;font-size:clamp(20px,2vw,28px);line-height:1.3;letter-spacing:-0.022em;font-weight:600;color:var(--ink)}
+.bk-head .chone{display:block;grid-column:2;margin-top:6px;font-size:var(--t3-size);line-height:var(--t3-lh);color:var(--ink-muted);max-width:34em}
+.acts{margin-top:clamp(36px,4vw,56px);display:flex;flex-wrap:wrap;gap:12px}
+.acts .btn{min-height:52px;padding:0 24px}
+.vhead{padding-top:clamp(56px,7vw,96px)}
+.vhead h1{max-width:20em}
+
+/* 쪽 넘김 칸 */
+.viewer{margin-top:clamp(64px,8vw,120px)}
+.flip-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;margin-bottom:24px}
+.flip-n{color:var(--ink-muted);font-feature-settings:"tnum"}
+.flip-go{display:flex;gap:8px}
+.flip{--pw:clamp(260px,30vw,420px);list-style:none;display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:8px 4px 40px;scrollbar-width:thin;scrollbar-color:var(--hairline-strong) transparent;outline:none}
+.flip>li{flex:0 0 var(--pw);scroll-snap-align:start;aspect-ratio:148/210;position:relative}
+.flip>li .pg-wrap{position:absolute;inset:0;overflow:hidden;border-radius:3px;background:#fff;
+  box-shadow:0 0 0 1px rgb(255 255 255 / .06),0 40px 80px -40px rgb(var(--light) / .45)}
+.flip>li .pg{transform-origin:0 0}
+.flip>li .pn-l{position:absolute;left:0;right:0;bottom:-28px;text-align:center;font-size:14px;color:var(--ink-subtle)}
+
+/* 종이 한 쪽(실제 크기 148×210mm, 화면에서는 줄여 보임) */
+.pg{width:148mm;height:210mm;background:#fff;color:#0B1F33;position:relative;font-family:var(--font);word-break:keep-all;overflow-wrap:anywhere;
+  -webkit-font-smoothing:antialiased}
+.pg-body{position:absolute;left:17mm;right:15mm;top:19mm;bottom:20mm;overflow:hidden}
+.pg-run{position:absolute;left:17mm;right:15mm;top:9mm;font-size:7.5pt;color:#7C8B9B;display:flex;justify-content:space-between;letter-spacing:.01em}
+.pg-num{position:absolute;bottom:9mm;left:0;right:0;text-align:center;font-size:8pt;color:#4E6074;font-feature-settings:"tnum"}
+.pg.even .pg-body,.pg.even .pg-run{left:15mm;right:17mm}
+.pg-body>*+*{margin-top:3.2mm}
+.pg-body p,.pg-body li{font-size:9.6pt;line-height:1.78;color:#1A2B3D;text-align:justify;letter-spacing:-0.004em}
+.pg-body p.cont{text-indent:0}
+.pg-body strong{color:#0B1F33;font-weight:700}
+.pg-body sup.ref{font-size:6pt;vertical-align:.5em;line-height:0;color:#3378AD}
+.pg-body sup.ref a{color:inherit}
+.pg-body .b-kick{font-size:9pt;font-weight:700;color:#3378AD;margin-top:22mm}
+.pg-body .b-h1{font-size:22pt;line-height:1.22;letter-spacing:-0.03em;font-weight:800;color:#0B1F33;margin-top:3mm}
+.pg-body .b-lede{font-size:10.5pt;line-height:1.6;color:#4E6074;margin-top:5mm;margin-bottom:12mm;text-align:left}
+.pg-body .b-h2,.pg-body h2{font-size:13pt;line-height:1.35;letter-spacing:-0.02em;font-weight:800;color:#0B1F33;margin-top:8mm}
+.pg-body h3,.pg-body .sub{font-size:10.5pt;line-height:1.4;font-weight:700;color:#123A63;margin-top:5mm}
+.pg-body .fig{margin:4mm 0;padding:3mm;background:#F5F7F9;border-radius:2mm}
+.pg-body .fig .fn{display:none}
+.pg-body .fig svg{width:100%;height:auto;max-height:110mm}
+.pg-body ul,.pg-body ol{padding-left:4.5mm;display:grid;gap:1mm}
+.pg-body pre{font-family:var(--mono);font-size:8pt;line-height:1.6;white-space:pre-wrap;border-left:.6mm solid #D5E4F1;padding-left:3mm;color:#123A63}
+.pg-body blockquote{border-left:.8mm solid #C2662E;padding-left:3.5mm}
+.pg-body .b-cond{border-top:.3mm solid #D5E4F1;padding-top:2.5mm}
+.pg-body .b-cond-h,.pg-body .call-h{font-size:8.5pt;font-weight:700;color:#4E6074}
+.pg-body .b-cond li,.pg-body .b-cond p{font-size:8.2pt;line-height:1.65;color:#4E6074}
+.pg-body .call{background:#EEF2F6;border-radius:2mm;padding:3mm 4mm}
+.pg-body .tbl table{border-collapse:collapse;width:100%;font-size:8.4pt}
+.pg-body .tbl th,.pg-body .tbl td{border-bottom:.3mm solid #D5E4F1;padding:1.4mm 2mm;text-align:left}
+.pg-body .b-notes-h{font-size:10pt;font-weight:800;margin-top:8mm}
+.pg-body .b-notes{list-style:none;padding:0}
+.pg-body .b-notes li{font-size:7.6pt;line-height:1.6;color:#4E6074;text-align:left}
+.pg-body .b-notes li span{font-weight:700;color:#3378AD;margin-right:1mm}
+/* 표지 · 차례 · 판권 */
+.pg.cover-pg{background:#0B1F33}
+.pg.cover-pg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg .toc-h{font-size:16pt;font-weight:800;margin-top:14mm;margin-bottom:9mm}
+.pg .toc-l{list-style:none;padding:0;display:grid;gap:4.5mm}
+.pg .toc-l li{display:grid;grid-template-columns:12mm 1fr auto;align-items:baseline;font-size:10.5pt;text-align:left}
+.pg .toc-l .n{color:#3378AD;font-weight:700;font-size:9pt}
+.pg .toc-l .p{color:#4E6074;font-feature-settings:"tnum"}
+.pg .colophon{position:absolute;left:17mm;right:17mm;bottom:24mm;font-size:8pt;line-height:1.9;color:#4E6074}
+.pg .colophon strong{display:block;font-size:11pt;color:#0B1F33;margin-bottom:3mm}
+
+.vmoves{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid var(--hairline);padding-top:40px;margin-top:72px}
+.vm{display:grid;gap:8px}
+.vm-next{grid-column:2;justify-self:end;text-align:right}
+.vm-k{font-size:16px;color:var(--ink-muted)}
+.vm-n{font-size:20px;font-weight:500;transition:color .3s}
+.vm:hover .vm-n{color:var(--primary-hover)}
+#bk-measure{position:absolute;left:-9999px;top:0;visibility:hidden}
+
+@media (max-width:860px){
+  .bk-head{grid-template-columns:1fr;row-gap:40px}
+  .bk-cover-img{width:min(70%,280px)}
+  .flip{--pw:72vw}
+}
+@media print{
+  @page{size:148mm 210mm;margin:0}
+  html,body{background:#fff!important}
+  body>*:not(main),.bk-head,.vhead,.flip-top,.vmoves,.nav,.foot{display:none!important}
+  main{padding:0!important}
+  .viewer{margin:0!important;padding:0!important;max-width:none!important}
+  .flip{display:block!important;overflow:visible!important;padding:0!important;gap:0}
+  .flip>li{display:block!important;width:148mm!important;height:210mm;aspect-ratio:auto;page-break-after:always;break-after:page}
+  .flip>li[hidden]{display:none!important}
+  .flip>li .pg-wrap{position:static;box-shadow:none;border-radius:0}
+  .flip>li .pg{transform:none!important}
+  .flip>li .pn-l{display:none}
+}

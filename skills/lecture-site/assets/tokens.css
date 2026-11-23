@@ -1,0 +1,24 @@
+/* 사이트 토큰(Linear 계열 다크). 색·글자·판면·움직임 값은 여기 한 곳. site.css, book.css 는 이 값만 씀.
+   원본 token-saving-guide 의 tokens.css 값을 그대로 옮김. 강의마다 바꾸고 싶으면 --primary 계열만 바꿈 */
+:root{
+  --canvas:#010102; --surface-1:#0f1011; --surface-2:#141516; --surface-3:#18191a;
+  --hairline:#23252a; --hairline-strong:#34343a;
+  --ink:#f7f8f8; --ink-muted:#d0d6e0; --ink-subtle:#8a8f98; --ink-tertiary:#62666d;
+  --primary:#5e6ad2; --primary-hover:#828fff; --on-primary:#ffffff;
+  --plate:#f5f6f6;
+  --light:206 214 232;            /* 판의 깊이를 내는 빛 하나. 차가운 무채색 */
+  --font:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  --mono:'D2Coding',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  /* 글자 위계 3단 + 보조 */
+  --t1-size:clamp(44px,6.1vw,88px); --t1-lh:1.06; --t1-ls:-0.035em;
+  --t2-size:clamp(28px,3.4vw,50px); --t2-lh:1.18; --t2-ls:-0.028em;
+  --t3-size:clamp(17px,1.35vw,20px); --t3-lh:1.6;  --t3-ls:-0.008em;
+  --ui-size:17px;
+  /* 판면 */
+  --container:1320px; --gutter:clamp(20px,4.2vw,60px);
+  --gap-section:clamp(120px,15vw,220px);
+  --r-btn:8px; --r-plate:12px; --r-frame:16px;
+  --bar-h:72px;
+  /* 움직임 */
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
